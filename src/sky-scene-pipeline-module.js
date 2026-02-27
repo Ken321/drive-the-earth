@@ -56,7 +56,7 @@ export const skySampleScenePipelineModule = () => {
   let stage1Point = 0
   let stage2Point = 0
   let stage3Point = 0
-  let firstViewSwiped = false
+  let currentLang = 'ja'
   let meteorSpeed = 0.1
 
   const defaultFps = 0.033  // 秒単位
@@ -175,7 +175,22 @@ export const skySampleScenePipelineModule = () => {
   startViewMain.id = 'startViewMain'
   startView.appendChild(startViewMain)
 
-  // ボタンと切り替わる部分を並べるため
+  // 言語切り替えセグメンテッドボタン（右上固定）
+  const langToggle = document.createElement('div')
+  langToggle.id = 'langToggle'
+  startViewMain.appendChild(langToggle)
+
+  const langToggleJa = document.createElement('div')
+  langToggleJa.className = 'langToggleItem active'
+  langToggleJa.innerHTML = '日本語'
+  langToggle.appendChild(langToggleJa)
+
+  const langToggleEn = document.createElement('div')
+  langToggleEn.className = 'langToggleItem'
+  langToggleEn.innerHTML = 'English'
+  langToggle.appendChild(langToggleEn)
+
+  // スクロール可能なコンテンツ領域
   const startViewMainInner = document.createElement('div')
   startViewMainInner.id = 'startViewMainInner'
   startViewMain.appendChild(startViewMainInner)
@@ -199,15 +214,17 @@ export const skySampleScenePipelineModule = () => {
   startViewExp1.className = 'startViewExp'
   startViewMainInner.appendChild(startViewExp1)
 
+  const startViewExp1Image = document.createElement('div')
+  startViewExp1Image.className = 'startViewExpImage'
+  startViewExp1.appendChild(startViewExp1Image)
+
   const startViewExp1Title = document.createElement('p')
   startViewExp1Title.className = 'startViewExpTitle'
   startViewExp1.appendChild(startViewExp1Title)
-  startViewExp1Title.innerHTML = 'The earth is in danger.'
 
   const startViewExp1Text = document.createElement('p')
   startViewExp1Text.className = 'startViewExpText'
   startViewExp1.appendChild(startViewExp1Text)
-  startViewExp1Text.innerHTML = 'Due to the expansion of the sun\'s weight,<br>the planets in our solar system are moving toward the earth.'
 
   // 説明2
   const startViewExp2 = document.createElement('div')
@@ -215,15 +232,17 @@ export const skySampleScenePipelineModule = () => {
   startViewExp2.className = 'startViewExp'
   startViewMainInner.appendChild(startViewExp2)
 
+  const startViewExp2Image = document.createElement('div')
+  startViewExp2Image.className = 'startViewExpImage'
+  startViewExp2.appendChild(startViewExp2Image)
+
   const startViewExp2Title = document.createElement('p')
   startViewExp2Title.className = 'startViewExpTitle'
   startViewExp2.appendChild(startViewExp2Title)
-  startViewExp2Title.innerHTML = 'A 100,000 horsepower robot carries the earth.'
 
   const startViewExp2Text = document.createElement('p')
-  startViewExp1Text.className = 'startViewExpText'
+  startViewExp2Text.className = 'startViewExpText'
   startViewExp2.appendChild(startViewExp2Text)
-  startViewExp2Text.innerHTML = 'Control the robot by operating the joystick.<br>When you press the joystick, the robot will move in the direction you are looking.'
 
   // 説明3
   const startViewExp3 = document.createElement('div')
@@ -231,166 +250,73 @@ export const skySampleScenePipelineModule = () => {
   startViewExp3.className = 'startViewExp'
   startViewMainInner.appendChild(startViewExp3)
 
+  const startViewExp3Image = document.createElement('div')
+  startViewExp3Image.className = 'startViewExpImage'
+  startViewExp3.appendChild(startViewExp3Image)
+
   const startViewExp3Title = document.createElement('p')
   startViewExp3Title.className = 'startViewExpTitle'
   startViewExp3.appendChild(startViewExp3Title)
-  startViewExp3Title.innerHTML = 'We need renewable energy.'
 
   const startViewExp3Text = document.createElement('p')
   startViewExp3Text.className = 'startViewExpText'
   startViewExp3.appendChild(startViewExp3Text)
-  startViewExp3Text.innerHTML = 'The robot needs renewable energy to keep moving. Energy boxes are generally scattered in the direction of travel, so pick them up as you go.'
 
-  // 説明4
-  const startViewExp4 = document.createElement('div')
-  startViewExp4.id = 'startViewExp4'
-  startViewExp4.className = 'startViewExp'
-  startViewMainInner.appendChild(startViewExp4)
-
-  const startViewExp4Title = document.createElement('p')
-  startViewExp4Title.className = 'startViewExpTitle'
-  startViewExp4.appendChild(startViewExp4Title)
-  startViewExp4Title.innerHTML = 'Start where the sky is wide open!'
-
-  const startViewExp4Text = document.createElement('p')
-  startViewExp4Text.className = 'startViewExpText'
-  startViewExp4.appendChild(startViewExp4Text)
-  startViewExp4Text.innerHTML = 'The robot moves in the direction you sees. Therefore, it is much easier to operate the robot if you have a wide view of the sky. So go to a place where the sky is as wide as possible!'
-
-  const startViewCarousel = document.createElement('div')
-  startViewCarousel.id = 'startViewCarousel'
-  startViewMainInner.appendChild(startViewCarousel)
-
-  const startViewCarouselItem0 = document.createElement('div')
-  startViewCarouselItem0.id = 'startViewCarouselItem0'
-  startViewCarouselItem0.className = 'startViewCarouselItem active'
-  startViewCarousel.appendChild(startViewCarouselItem0)
-
-  const startViewCarouselItem1 = document.createElement('div')
-  startViewCarouselItem1.id = 'startViewCarouselItem1'
-  startViewCarouselItem1.className = 'startViewCarouselItem'
-  startViewCarousel.appendChild(startViewCarouselItem1)
-
-  const startViewCarouselItem2 = document.createElement('div')
-  startViewCarouselItem2.id = 'startViewCarouselItem2'
-  startViewCarouselItem2.className = 'startViewCarouselItem'
-  startViewCarousel.appendChild(startViewCarouselItem2)
-
-  const startViewCarouselItem3 = document.createElement('div')
-  startViewCarouselItem3.id = 'startViewCarouselItem3'
-  startViewCarouselItem3.className = 'startViewCarouselItem'
-  startViewCarousel.appendChild(startViewCarouselItem3)
-
-  const startViewCarouselItem4 = document.createElement('div')
-  startViewCarouselItem4.id = 'startViewCarouselItem4'
-  startViewCarouselItem4.className = 'startViewCarouselItem'
-  startViewCarousel.appendChild(startViewCarouselItem4)
-
-  const pageTransition = ({num = 0, flip = null}) => {
-    let current = 0
-    let target = num
-    if (startViewCarouselItem0.classList.contains('active')) current = 0
-    if (startViewCarouselItem1.classList.contains('active')) current = 1
-    if (startViewCarouselItem2.classList.contains('active')) current = 2
-    if (startViewCarouselItem3.classList.contains('active')) current = 3
-    if (startViewCarouselItem4.classList.contains('active')) current = 4
-    if (flip === 'next') {
-      target = current + 1
-    } else if (flip === 'before') {
-      target = current - 1
-    }
-    startViewCarouselItem0.classList.remove('active')
-    startViewCarouselItem1.classList.remove('active')
-    startViewCarouselItem2.classList.remove('active')
-    startViewCarouselItem3.classList.remove('active')
-    startViewCarouselItem4.classList.remove('active')
-    startViewTitle.style.display = 'none'
-    startViewExp1.style.display = 'none'
-    startViewExp2.style.display = 'none'
-    startViewExp3.style.display = 'none'
-    startViewExp4.style.display = 'none'
-    switch (target) {
-      case 0:
-        startViewCarouselItem0.classList.add('active')
-        startViewTitle.style.display = 'block'
-        break
-      case 1:
-        startViewCarouselItem1.classList.add('active')
-        startViewExp1.style.display = 'block'
-        break
-      case 2:
-        startViewCarouselItem2.classList.add('active')
-        startViewExp2.style.display = 'block'
-        break
-      case 3:
-        startViewCarouselItem3.classList.add('active')
-        startViewExp3.style.display = 'block'
-        break
-      case 4:
-        startViewCarouselItem4.classList.add('active')
-        startViewExp4.style.display = 'block'
-        break
-      default:
-        startViewCarouselItem0.classList.add('active')
-        startViewTitle.style.display = 'block'
-        break
-    }
-  }
-  startViewCarouselItem0.addEventListener('touchstart', () => {
-    pageTransition({num: 0})
-  })
-  startViewCarouselItem1.addEventListener('touchstart', () => {
-    pageTransition({num: 1})
-  })
-  startViewCarouselItem2.addEventListener('touchstart', () => {
-    pageTransition({num: 2})
-  })
-  startViewCarouselItem3.addEventListener('touchstart', () => {
-    pageTransition({num: 3})
-  })
-  startViewCarouselItem4.addEventListener('touchstart', () => {
-    pageTransition({num: 4})
-  })
-
-  const setSwipe = (elem) => {
-    const t = elem
-    let startX       // タッチ開始 x座標
-    let moveX        // スワイプ中の x座標
-    const dist = 30  // スワイプを感知する最低距離（ピクセル単位）
-
-    // タッチ開始時： xy座標を取得
-    t.addEventListener('touchstart', (e) => {
-      e.preventDefault()
-      startX = e.touches[0].pageX
-    })
-
-    // スワイプ中： xy座標を取得
-    t.addEventListener('touchmove', (e) => {
-      e.preventDefault()
-      moveX = e.changedTouches[0].pageX
-    })
-
-    // タッチ終了時： スワイプした距離から左右どちらにスワイプしたかを判定する/距離が短い場合何もしない
-    t.addEventListener('touchend', (e) => {
-      if (startX > moveX && startX > moveX + dist) {  // 右から左にスワイプ
-        firstViewSwiped = true
-        pageTransition({flip: 'next'})
-      } else if (startX < moveX && startX + dist < moveX) {  // 左から右にスワイプ
-        firstViewSwiped = true
-        pageTransition({flip: 'before'})
-      }
-    })
-  }
-  setSwipe(startViewTitle)
-  setSwipe(startViewExp1)
-  setSwipe(startViewExp2)
-  setSwipe(startViewExp3)
-  setSwipe(startViewExp4)
-
+  // スタートボタン（下部固定）
   const startButton = document.createElement('div')
   startButton.id = 'startButton'
-  startButton.innerHTML = 'START GAME'
-  startViewMainInner.appendChild(startButton)
+  startViewMain.appendChild(startButton)
+
+  // テキストコンテンツ（日英）
+  const uiTexts = {
+    ja: {
+      exp1Title: 'カメラで空を見上げてください。',
+      exp1Text: 'これは空にARを写して遊ぶゲームです。まずはカメラを空に向けてください。',
+      exp2Title: '地球を運んで惑星衝突を避けるのが使命',
+      exp2Text: 'あなたは地球を運んでいるロボットです。ジョイスティックを使って惑星衝突を避けてください。カメラの向いている方向に進むのでそれも重要です。',
+      exp3Title: 'エナジーを欠かさないで',
+      exp3Text: 'すぐにエネルギーが切れるので、エナジーボックスにぶつかりながら進んでください。',
+      startButton: 'ゲームスタート',
+    },
+    en: {
+      exp1Title: 'Look up at the sky with your camera.',
+      exp1Text: 'This is an AR game played in the sky. First, point your camera toward the sky.',
+      exp2Title: 'Your mission: carry the Earth and dodge planetary collisions',
+      exp2Text: 'You are a robot carrying the Earth. Use the joystick to avoid planetary collisions. The direction your camera faces also determines your movement.',
+      exp3Title: "Don't run out of energy",
+      exp3Text: 'Energy drains quickly, so keep collecting energy boxes as you move.',
+      startButton: 'START GAME',
+    },
+  }
+
+  const updateTexts = (lang) => {
+    const t = uiTexts[lang]
+    startViewExp1Title.innerHTML = t.exp1Title
+    startViewExp1Text.innerHTML = t.exp1Text
+    startViewExp2Title.innerHTML = t.exp2Title
+    startViewExp2Text.innerHTML = t.exp2Text
+    startViewExp3Title.innerHTML = t.exp3Title
+    startViewExp3Text.innerHTML = t.exp3Text
+    startButton.innerHTML = t.startButton
+  }
+  updateTexts('ja')
+
+  const switchLang = (lang) => {
+    if (currentLang === lang) return
+    currentLang = lang
+    updateTexts(lang)
+    if (lang === 'ja') {
+      langToggleJa.classList.add('active')
+      langToggleEn.classList.remove('active')
+    } else {
+      langToggleEn.classList.add('active')
+      langToggleJa.classList.remove('active')
+    }
+  }
+  langToggleJa.addEventListener('touchstart', (e) => { e.preventDefault(); switchLang('ja') })
+  langToggleJa.addEventListener('click', () => switchLang('ja'))
+  langToggleEn.addEventListener('touchstart', (e) => { e.preventDefault(); switchLang('en') })
+  langToggleEn.addEventListener('click', () => switchLang('en'))
 
   document.body.appendChild(startView)
 
@@ -1151,20 +1077,8 @@ export const skySampleScenePipelineModule = () => {
       startViewFlash.style.display = 'none'
       startViewMain.style.display = 'block'
       setTimeout(() => {
-        if (!firstViewSwiped) pageTransition({flip: 'next'})
-        setTimeout(() => {
-          if (!firstViewSwiped) pageTransition({flip: 'next'})
-          setTimeout(() => {
-            if (!firstViewSwiped) pageTransition({flip: 'next'})
-            setTimeout(() => {
-              if (!firstViewSwiped) pageTransition({flip: 'next'})
-              setTimeout(() => {
-                startButton.style.animation = 'attention 1s ease infinite'
-              }, 4000)
-            }, 4000)
-          }, 4000)
-        }, 4000)
-      }, 4000)
+        startButton.style.animation = 'attention 1s ease infinite'
+      }, 2000)
     }, 4000)
 
     document.addEventListener('joystickmove', (e) => {
